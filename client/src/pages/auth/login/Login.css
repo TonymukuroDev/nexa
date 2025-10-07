@@ -1,0 +1,210 @@
+
+/* Login */
+
+
+.login {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 85% 15%;
+}
+
+.login form .icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* SECTION LEFT */
+
+.login .section--left .head {
+    padding: 20px  40px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login .head .logo {
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+.login .head .container {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.login  .container div {
+    font-size: 12.8px;
+}
+
+.login .container .btn {
+    font-size: 12.8px;
+    cursor: pointer;
+    color: var(--secondary-color);
+    width: 88px;
+    height: 28.8px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    transition: all ease 0.3s;
+}
+
+.login .container .btn:hover {
+    background-color: var(--dark-blue-secondary);
+    color: var(--primary-color);
+    border: none;
+}
+
+
+.login .section--left .body {
+    width: 100%;
+    height: 662.2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 115.2px;
+}
+
+.login .body .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.login .body .top .title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.login .body .top .subtitle {
+    font-size: 12.8px;
+    text-transform: uppercase;
+    color: #616161;
+}
+
+.login .body form {
+    padding-top: 58.8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+}
+
+.login form .field,
+.login .extra--field, 
+.login .btn--submit {
+    width: 484px;
+    height: 48px;
+}
+
+.login form .field {
+    position: relative;
+    padding: 0 16px;
+    border: 1px solid var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.login .extra--field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login .remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.login .remember label {
+    font-size: 12.8px;
+    color: #616161;
+}
+
+.login .extra--field a {
+    font-size: 12.8px;
+    color: #616161;
+}
+
+.login input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+}
+
+ 
+.login input#phoneNumber,
+.login input#password {
+    width: 400px;
+    border: none;
+    outline: none;
+} 
+
+
+
+
+.login form .field label {
+    font-size: 12.8px;
+    color: #616161;
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+}
+
+.login form .field:focus-within label,
+.login form .field.filled label {
+    top: -8px;
+    background-color: white;
+    padding: 0 4px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: var(--dark-blue);
+    font-weight: 500;
+}
+
+.login button.btn--pass {
+    border: none;
+    background-color: white;
+}
+
+.login form .btn--submit {
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--dark-blue);
+    color: var(--primary-color);
+    border: none;
+    transition: all ease 0.3s;
+}
+
+.login form .btn--submit:hover {
+    background-color: var(--dark-blue-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+
+/* SECTION RIGHT */
+
+.login .section--right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary-color);
+}
+
+.login .section--right .logo {
+    color: var(--primary-color);
+    font-size: 30px;
+}
+
