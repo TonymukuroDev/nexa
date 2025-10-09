@@ -16,7 +16,7 @@ class Base(DeclarativeBase):
     pass
 
 
-def get_db():
+async def get_db():
     db = sessionLocal()
 
     try:
