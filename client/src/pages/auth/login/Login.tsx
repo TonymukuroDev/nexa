@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { ILoginFormInput, loginSchema, TLoginFormData } from './types/loginform';
 import {useState } from 'react';
 import FormError from '../../../components/errors/form_error/FormError';
-import { useLoginMutation } from '../../../app/services/auth/authApi';
+import { useLoginMutation } from '../../../app/features/auth/services/authApi';
 import { storageService } from '../../../utils/config';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -15,8 +15,7 @@ const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [login, {isLoading}] = useLoginMutation()
 
-    const navigate = useNavigate
-    ()
+    const navigate = useNavigate()
     const {
         register,
         watch,

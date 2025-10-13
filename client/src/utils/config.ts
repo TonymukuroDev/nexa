@@ -7,10 +7,10 @@ export const storageService = {
         localStorage.setItem(key, parsedData)
     },
 
-    retrieve: <T>(key: string, mustParse: boolean): T | null => {
-        if(!mustParse) return localStorage.getItem(key) as T;
-
-        return localStorage.getItem(key) as T;
+    retrieve: <T>(key: string): T | null => {
+        
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) as T : null;
     },
 
     delete: (key: string): void => {

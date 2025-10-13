@@ -4,7 +4,11 @@ export interface ILoginResponse {
     }
 }
 
-export interface IRegisterResponse extends ILoginResponse {}
+export interface IRegisterResponse  {
+    data: {
+        token: string
+    }
+}
 
 export interface IGetRefreshTokenResponse {
     data: {
@@ -18,6 +22,11 @@ export interface ILogoutResponse {
 
 export interface IGetAuthUserResponse {
     data: {
-        
+        id: string,
+        firstName: string,
+        lastName: string,
+        phoneNumber: string,
+        roles: string[],
+        photo: string | null; 
     }
 }

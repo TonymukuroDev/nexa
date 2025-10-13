@@ -1,0 +1,50 @@
+.navbarFeatures {
+   height: 100vh;
+   position: absolute;
+   top: 0;
+   left: 0;
+   background-color: #dadfe7;
+   z-index: 10;
+}
+
+.navbarFeatures .container {
+    padding: 20px 15px;
+}
+
+.navbarFeatures .icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.navbarFeatures .icon__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 100%;
+    transition: background-color ease 0.3s;
+}
+
+.navbarFeatures .icon__container.active {
+    background-color: #c2c1c1;
+
+}
+
+.navbarFeatures .features {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 580px;
+}
+
+.navbarFeatures .settings {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+}

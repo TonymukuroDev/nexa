@@ -1,0 +1,71 @@
+.permissionModal {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: #00000090;
+}
+
+.permissionModal .modal {
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    padding: 20px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 110;
+    background-color: var(--primary-color);
+    width: 600px;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.permissionModal .modal .head .process {
+    font-size: 20px;
+
+}
+
+.permissionModal .btn__container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 20px;
+}
+
+.permissionModal .btn {
+    width: 150px;
+    height: 40px;
+    text-transform: capitalize;
+    border: none;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 600;
+
+    transition: all ease-in-out 0.3s;
+}
+
+.permissionModal .btn:hover {
+    transform: translateY(-2px);
+}
+
+.permissionModal .btn.confirm {
+    background-color: rgb(241, 44, 44);
+    color: var(--primary-color);
+}
+
+.permissionModal .btn.confirm:hover {
+    background-color: rgb(185, 23, 23);
+    color: var(--primary-color);
+}
+.permissionModal .btn.cancel {
+    color: var(--dark-blue);
+}
+
+.permissionModal .btn.cancel:hover {
+    color: var(--primary-color);
+    background-color: var(--dark-blue);
+}
+
+

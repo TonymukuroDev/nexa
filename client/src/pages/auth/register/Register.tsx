@@ -4,7 +4,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 import FormError from "../../../components/errors/form_error/FormError";
 import './Register.css'
-import { useRegisterUserMutation } from "../../../app/services/auth/authApi";
+import { useRegisterUserMutation } from "../../../app/features/auth/services/authApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { storageService } from "../../../utils/config";
 
