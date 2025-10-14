@@ -1,0 +1,55 @@
+.logoutModal  {
+    position: relative;
+    z-index: 800;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    
+}
+
+.logoutModal .modal {
+    z-index: 810;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    position: absolute;
+    left: 380px;
+    top: 70px;
+    width: 150px;
+    padding: 3px;
+    border: 1px solid #dadfe7;
+}
+.logoutModal .icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--dark-blue);
+}
+
+.logoutModal .modal span {
+    color: var(--secondary-color);
+    font-size: 16px;
+    font-weight: 600;
+    
+}
+
+.logoutModal .modal .container {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color ease-in-out 0.3s;
+}
+
+.logoutModal .modal .container:hover {
+    background-color: var(--dark-blue);
+    color: var(--primary-color);
+}
+
+.logoutModal .modal .container:hover .icon {
+    stroke: var(--primary-color);
+}
+
+.logoutModal .modal .container:hover span {
+    color: var(--primary-color);
+}
+
+

@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { useGetAuthUserQuery, useLogoutMutation } from "../../app/features/auth/services/authApi";
 import ContainerPage from "../../components/container/ContainerPage";
 import PermissionModal from "../../components/modals/permissions/PermissionModal";
@@ -7,14 +6,17 @@ import SettingsContent from "./SettingsContent";
 import { selectPermissionModal } from "../../components/modals/permissions/store/permissionsSelectors";
 import { IPermissionModalProps } from "../../components/modals/permissions/types/permissions.props";
 import { useNavigate } from "react-router";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { permissionModalClose } from "../../components/modals/permissions/store/permissionsSlice";
 
 const SettingsPage = () => {
     const navigate = useNavigate()
+    
     const dispatch = useAppDispatch()
+
     const {data} = useGetAuthUserQuery()
-    const permissionModal = useSelector(selectPermissionModal)
+
+    const permissionModal = useAppSelector(selectPermissionModal)
     const [logout] = useLogoutMutation()
     const modalContent: IPermissionModalProps["modalContent"] = {
         process: "Log out",

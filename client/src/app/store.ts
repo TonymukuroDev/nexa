@@ -3,16 +3,24 @@ import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "./features/api";
 import authReducer from './features/auth/slices/authSlice'
 import permissionsReducer from '../components/modals/permissions/store/permissionsSlice'
+import logoutModalReducer from '../components/modals/logoutModal/store/logoutModalSlice'
+
+
 export const store = configureStore({
     reducer: {
       auth: authReducer,
-      permissions: permissionsReducer, 
+      permissions: permissionsReducer,
+      logoutModal: logoutModalReducer,
       [baseApi.reducerPath]: baseApi.reducer
     },
      middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST'],
+        ignoredActions: [
+          'persist/PERSIST', 
+          'socket/connect', 
+          'socket/disconnect'
+        ],
       },
     }).concat(baseApi.middleware),
 })
