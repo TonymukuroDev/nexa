@@ -1,15 +1,20 @@
-import { useGetAuthUserQuery } from "../../app/features/auth/services/authApi";
+import { useAppSelector } from "../../app/hooks";
 import ContainerPage from "../../components/container/ContainerPage";
+import ContactBtnContainer from "../../components/modals/contactBtnContainer/ContactBtnContainer";
+import { selectContactBtnContainer } from "../../components/modals/contactBtnContainer/store/contactBtnContainer.selector";
 import NavbarFeatures from "../../components/navbars/navbarFeatures/NavbarFeatures";
+import { useAuth } from "../../context/auth/authContextHook";
 import ContactsContent from "./ContactsContent";
 
 
 const ContactsPage = () => {
-    const {data} = useGetAuthUserQuery()
+    const {authUser} = useAuth()
+    const contactBtnContainer = useAppSelector(selectContactBtnContainer)
     return (
         <>
-            <NavbarFeatures authUser={data?.data}/>
+            <NavbarFeatures authUser={authUser.data}/>
             <ContactsContent/>
+            <ContactBtnContainer contactBtnContainer={contactBtnContainer} />
             <ContainerPage>
                 <div className="page">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="icon">

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IPermissionsStoreState } from "../types/permissions.entitites";
-import { authApiSlice } from "../../../../app/features/auth/services/authApi";
 
 
 const initialState: IPermissionsStoreState = {
@@ -26,18 +25,6 @@ export const permissionsSlice = createSlice({
                 isOpen: false
             }
         }),
-    },
-    extraReducers: (builder) => {
-        builder
-        .addMatcher(
-            authApiSlice.endpoints.logout.matchFulfilled,
-            (state) => ({
-                ...state,
-                permissionModal: {
-                    isOpen: false
-                }
-            })
-        )
     }
 })
 

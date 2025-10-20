@@ -1,3 +1,5 @@
+import { IAuthUser } from "./auth.entities";
+
 export interface ILoginResponse {
     data: {
         token: string;
@@ -21,12 +23,5 @@ export interface ILogoutResponse {
 }
 
 export interface IGetAuthUserResponse {
-    data: {
-        id: string,
-        firstName: string,
-        lastName: string,
-        phoneNumber: string,
-        roles: string[],
-        photo: string | null; 
-    }
+    data: IAuthUser
 }

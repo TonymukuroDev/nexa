@@ -4,9 +4,8 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 import FormError from "../../../components/errors/form_error/FormError";
 import './Register.css'
-import { useRegisterUserMutation } from "../../../app/features/auth/services/authApi";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { storageService } from "../../../utils/config";
+import { useAuth } from "../../../context/auth/authContextHook";
 
 
 const RegisterPage = () => {
@@ -16,7 +15,7 @@ const RegisterPage = () => {
         watch,
         reset,
         formState: {errors, touchedFields, isValid}
-    } = useForm({
+    } = useForm<TRegisterFormData>({
         defaultValues: {
             firstName: "",
             lastName: "",
@@ -28,10 +27,8 @@ const RegisterPage = () => {
     })
 
     const navigate = useNavigate()
-
-    const [registerUser, {isLoading}] = useRegisterUserMutation()
-
-
+    const {register: registerUser, registerLoading} = useAuth()
+    
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
     
@@ -41,20 +38,11 @@ const RegisterPage = () => {
 
         console.log("Register data", data);
         try {
-            const result = await registerUser({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                phoneNumber: data.phoneNumber,
-                password: data.password
-            }).unwrap()
+            const result = await registerUser(data)
             
+            console.log("Register result: ", result);
             reset()
-            if(result.data.token) {
-                storageService.save("token", result.data.token);
-                navigate("/home")
-
-            }
-    
+            navigate("/")
             
         } catch (error) {
             console.log(error);
@@ -171,7 +159,7 @@ const RegisterPage = () => {
                             </button>
                         </div>
                         {errors.passwordConfirm && <FormError message={errors.passwordConfirm.message as string} />}
-                        <input disabled={!isValid} type="submit" className="btn" value={ isLoading ? "Loading..." : "Register"} />
+                        <input disabled={!isValid} type="submit" className="btn" value={ registerLoading ? "Loading..." : "Register"} />
                         
                     </form>
                 </div>

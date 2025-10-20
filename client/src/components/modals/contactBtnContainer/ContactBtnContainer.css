@@ -1,0 +1,69 @@
+.contact.btn__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 700;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+}
+
+.contact.btn__container .container {
+    position: relative;
+    width: inherit;
+    height: inherit;
+}
+
+
+.contact.btn__container .icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--dark-blue);
+}
+
+.contact.btn__container .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    z-index: 810;
+    background-color: var(--primary-color);
+    position: absolute;
+    left: 330px;
+    bottom: 110px;
+    width: 200px;
+    padding: 3px;
+    border: 1px solid #dadfe7;
+}
+
+.contact.btn__container .btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%;
+    padding: 4px;
+    padding-left: 10px;
+    font-weight: 600;
+}
+
+
+
+.contact.btn__container .btn.contact:hover .icon {
+    fill: white;
+}
+
+.contact.btn__container .btn:hover {
+    background-color: var(--dark-blue);
+    color: var(--primary-color);
+}
+
+.contact.btn__container .btn:hover .icon {
+    stroke: var(--primary-color);
+}
+
+.contact.btn__container .btn:hover span {
+    color: var(--primary-color);
+}

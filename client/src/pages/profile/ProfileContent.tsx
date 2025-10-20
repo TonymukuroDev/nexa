@@ -41,7 +41,7 @@ const ProfileContent:React.FC<IProfileContentProps> = ({authUser}) => {
           </div>
           <div className="user">
             <p className="name">{`${authUser?.firstName} ${authUser?.lastName}`}</p>
-            <p className="status">online</p>
+            <p className="status">{authUser?.profile?.status}</p>
           </div>
         </div>
 
@@ -63,7 +63,7 @@ const ProfileContent:React.FC<IProfileContentProps> = ({authUser}) => {
                 <path d="M65,50 A15,15 0 0,0 50,65" fill="none"  strokeWidth="8"></path>
             </svg>
             <div>
-              <span>TonyMDK</span>
+              <span>{authUser?.profile?.username}</span>
               <span>username</span>
             </div>
           </div>
@@ -73,7 +73,7 @@ const ProfileContent:React.FC<IProfileContentProps> = ({authUser}) => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
             </svg>
             <div>
-              <span>Bring out the best in others</span>
+              <span>{authUser?.profile?.bio}</span>
               <span>Bio</span>
             </div>
           </div>

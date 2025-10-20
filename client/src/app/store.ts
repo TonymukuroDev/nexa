@@ -4,6 +4,8 @@ import { baseApi } from "./features/api";
 import authReducer from './features/auth/slices/authSlice'
 import permissionsReducer from '../components/modals/permissions/store/permissionsSlice'
 import logoutModalReducer from '../components/modals/logoutModal/store/logoutModalSlice'
+import profileModalReducer from '../components/modals/profileModal/store/profileModalSlice'
+import contactBtnContainerReducer from '../components/modals/contactBtnContainer/store/contactBtnContainer.slice'
 
 
 export const store = configureStore({
@@ -11,6 +13,8 @@ export const store = configureStore({
       auth: authReducer,
       permissions: permissionsReducer,
       logoutModal: logoutModalReducer,
+      profileModal: profileModalReducer,
+      contactBtnContainer: contactBtnContainerReducer,
       [baseApi.reducerPath]: baseApi.reducer
     },
      middleware: (getDefaultMiddleware) =>

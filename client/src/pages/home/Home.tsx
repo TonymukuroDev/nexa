@@ -1,15 +1,26 @@
-import { useGetAuthUserQuery } from "../../app/features/auth/services/authApi";
 import ContainerPage from "../../components/container/ContainerPage";
+import ProfileModal from "../../components/modals/profileModal/ProfileModal";
 import NavbarFeatures from "../../components/navbars/navbarFeatures/NavbarFeatures";
 import HomeContent from "./HomeContent";
+import { useAuth } from "../../context/auth/authContextHook";
+import { useAppSelector } from "../../app/hooks";
+import { selectProfileModal } from "../../components/modals/profileModal/store/profileModalSelector";
+import { useEffect } from "react";
 
 
 const HomePage = () => {
-    const {data} = useGetAuthUserQuery()
+    const {authUser, setUserProfile, setUserProfileLoading, checkProfile} = useAuth()
+    const profileModal = useAppSelector(selectProfileModal)
+
+    useEffect(() => {
+        if(authUser.data) {
+            checkProfile(authUser.data)
+        }
+    }, [authUser,checkProfile])
 
     return (
         <>
-            <NavbarFeatures authUser={data?.data} />
+            <NavbarFeatures authUser={authUser.data} />
             <HomeContent/>
             <ContainerPage>
                 <div className="page">
@@ -23,6 +34,12 @@ const HomePage = () => {
                     </div>
                 </div>
             </ContainerPage>
+            <ProfileModal 
+            authUser={authUser.data}  
+            profileModal={profileModal}
+            setUserProfile={setUserProfile}
+            setUserProfileLoading={setUserProfileLoading} 
+            />
         </>
     )
 }

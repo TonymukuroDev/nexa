@@ -25,7 +25,7 @@ const SettingsContent: React.FC<ISettingsContentProps> = ({authUser}) => {
                     <img src={authUser?.photo ? authUser.photo : assets.userPlaceholder} alt={`${authUser?.firstName} ${authUser?.lastName}`} />
                     <div className="profile__content">
                         <div className="user">{authUser?.firstName}</div>
-                        <div className="bio">Bio</div>
+                        <div className="bio">{authUser?.profile?.bio}</div>
                     </div>
                 </NavLink>
                 <div className="line"></div>

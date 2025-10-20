@@ -1,4 +1,7 @@
+import { IProfile } from "../../profiles/types/profiles.entities";
+
 export interface IAuthStoreState {
+    token: string | null;
     isAuthenticated: boolean;
     error: TLoginError | TRegisterError | null;
 }
@@ -40,4 +43,5 @@ export interface IAuthUser {
     phoneNumber: string;
     roles: string[]
     photo: string | null;
+    profile: IProfile | null
 }

@@ -1,4 +1,3 @@
-import { useGetAuthUserQuery, useLogoutMutation } from "../../app/features/auth/services/authApi";
 import ContainerPage from "../../components/container/ContainerPage";
 import PermissionModal from "../../components/modals/permissions/PermissionModal";
 import NavbarFeatures from "../../components/navbars/navbarFeatures/NavbarFeatures";
@@ -8,23 +7,24 @@ import { IPermissionModalProps } from "../../components/modals/permissions/types
 import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { permissionModalClose } from "../../components/modals/permissions/store/permissionsSlice";
+import { useAuth } from "../../context/auth/authContextHook";
 
 const SettingsPage = () => {
     const navigate = useNavigate()
-    
     const dispatch = useAppDispatch()
 
-    const {data} = useGetAuthUserQuery()
+        
+    const {logout, authUser} = useAuth()
 
     const permissionModal = useAppSelector(selectPermissionModal)
-    const [logout] = useLogoutMutation()
+
     const modalContent: IPermissionModalProps["modalContent"] = {
         process: "Log out",
         content: ["Do you really want to log out?", "You can also close the tab and come back later."],
         btnName: "Log out",
         confirmAction: async () => {
-            await logout().unwrap()
-             navigate('/')
+            await logout()
+            navigate('/login')
         },
         cancelAction: () => {
             dispatch(permissionModalClose())
@@ -33,8 +33,8 @@ const SettingsPage = () => {
 
     return (
         <>
-            <NavbarFeatures authUser={data?.data} />
-            <SettingsContent authUser={data?.data}/>
+            <NavbarFeatures authUser={authUser.data} />
+            <SettingsContent authUser={authUser.data}/>
             <ContainerPage>
                 <div className="page">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="icon">

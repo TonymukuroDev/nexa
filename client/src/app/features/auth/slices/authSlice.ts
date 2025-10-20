@@ -3,9 +3,10 @@ import { IAuthStoreState, ILoginFailurePayload, IRegisterFailurePayload } from "
 import { authApiSlice } from "../services/authApi";
 
 
-const initialState: IAuthStoreState = {
+export const initialState: IAuthStoreState = {
     isAuthenticated: false,
-    error: null
+    error: null,
+    token: localStorage.getItem("token")
 }
 
 
@@ -16,12 +17,15 @@ const authSlice = createSlice({
         
         setAuth: (state) => ({
             ...state,
-            isAuthenticated: true
+            isAuthenticated: true,
+            token: localStorage.getItem("token")
         }),
 
-        logout: (state) => ({
+        logoutAction: (state) => ({
             ...state,
-            isAuthenticated: false
+            isAuthenticated: false,
+            token: null,
+            error: null
         }),
 
         setLoginErrors: (state, action: PayloadAction<ILoginFailurePayload>) => ({
@@ -45,7 +49,8 @@ const authSlice = createSlice({
             authApiSlice.endpoints.login.matchFulfilled,
             (state) => ({
                 ...state,
-                isAuthenticated: true
+                isAuthenticated: true,
+                token: localStorage.getItem("token")
             })
         )
 
@@ -55,7 +60,8 @@ const authSlice = createSlice({
             authApiSlice.endpoints.registerUser.matchFulfilled,
             (state) => ({
                 ...state,
-                isAuthenticated: true
+                isAuthenticated: true,
+                token: localStorage.getItem("token")
             })
         )
 
@@ -65,7 +71,8 @@ const authSlice = createSlice({
             authApiSlice.endpoints.logout.matchFulfilled,
             (state) => ({
                 ...state,
-                isAuthenticated: false
+                isAuthenticated: false,
+                token: null
             })
         )
     }
@@ -76,7 +83,7 @@ export const {
     setAuth,
     setLoginErrors,
     clearErrors,
-    logout
+    logoutAction
 } = authSlice.actions
 
 

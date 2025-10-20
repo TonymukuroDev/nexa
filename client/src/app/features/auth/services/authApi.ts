@@ -1,3 +1,4 @@
+import { permissionModalClose } from "../../../../components/modals/permissions/store/permissionsSlice";
 import { storageService } from "../../../../utils/config";
 import { baseApi } from "../../api";
 
@@ -29,16 +30,20 @@ export const authApiSlice = baseApi.injectEndpoints({
                 url: '/auth/logout',
                 method: 'POST',
             }),
-            async onQueryStarted(_, {queryFulfilled}) {
+            invalidatesTags: ['AuthUser'],
+            async onQueryStarted(_, {dispatch,queryFulfilled}) {
                 try {
                     const {data} = await queryFulfilled;
 
                     console.log(data);
                     storageService.delete("token")
+                    //dispatch(logoutAction())
+                    dispatch(permissionModalClose())
                     
                 } catch (error) {
                     // If there is an error
                     console.log("Logout error", error);
+                    throw error
                     
                 }
             }

@@ -10,7 +10,6 @@ const baseQuery = fetchBaseQuery({
     credentials: "include",
     prepareHeaders: (headers) => {
         const token = storageService.retrieve<string>("token")
-        console.log("token", token);
         
         if(token) headers.set('authorization', `Bearer ${token}`);
 

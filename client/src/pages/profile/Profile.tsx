@@ -1,4 +1,3 @@
-import { useGetAuthUserQuery, useLogoutMutation } from "../../app/features/auth/services/authApi"; 
 import ContainerPage from "../../components/container/ContainerPage";
 import LogoutModal from "../../components/modals/logoutModal/LogoutModal";
 import NavbarFeatures from "../../components/navbars/navbarFeatures/NavbarFeatures"
@@ -10,16 +9,16 @@ import { useNavigate } from "react-router";
 import { IPermissionModalProps } from "../../components/modals/permissions/types/permissions.props";
 import { permissionModalClose } from "../../components/modals/permissions/store/permissionsSlice";
 import PermissionModal from "../../components/modals/permissions/PermissionModal";
+import { useAuth } from "../../context/auth/authContextHook";
 
 
 const ProfilePage = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    
-    const [logout] = useLogoutMutation()
-    const {data} = useGetAuthUserQuery()
-
     const logoutModal = useAppSelector(selectLogoutModal)
+    
+    const {logout, authUser} = useAuth()
+
 
     const permissionModal = useAppSelector(selectPermissionModal)
 
@@ -28,17 +27,19 @@ const ProfilePage = () => {
         content: ["Do you really want to log out?", "You can also close the tab and come back later."],
         btnName: "Log out",
         confirmAction: async () => {
-            await logout().unwrap()
-                 navigate('/')
-            },
-            cancelAction: () => {
-                dispatch(permissionModalClose())
-            }
+            await logout()
+            navigate('/login')
+        },
+        cancelAction: () => {
+            dispatch(permissionModalClose())
         }
+    }
+
+    
     return (
         <>
-            <NavbarFeatures authUser={data?.data}/>
-            <ProfileContent authUser={data?.data}/>
+            <NavbarFeatures authUser={authUser.data}/>
+            <ProfileContent authUser={authUser.data}/>
             <LogoutModal logoutModal={logoutModal}/>
             <PermissionModal 
             permissionModal={permissionModal} 

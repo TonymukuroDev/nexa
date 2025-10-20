@@ -1,28 +1,28 @@
 import { NavLink, useNavigate } from 'react-router';
 import './Login.css'
 import { useForm } from 'react-hook-form';
-import { ILoginFormInput, loginSchema, TLoginFormData } from './types/loginform';
+import { loginSchema, TLoginFormData } from './types/loginform';
 import {useState } from 'react';
 import FormError from '../../../components/errors/form_error/FormError';
-import { useLoginMutation } from '../../../app/features/auth/services/authApi';
-import { storageService } from '../../../utils/config';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useAuth } from '../../../context/auth/authContextHook';
 
 
 
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [login, {isLoading}] = useLoginMutation()
-
     const navigate = useNavigate()
+
+    const {login, loginLoading} = useAuth()
+
     const {
         register,
         watch,
         handleSubmit,
         reset,
         formState: {errors, touchedFields, isValid}
-    } = useForm<ILoginFormInput>({
+    } = useForm<TLoginFormData>({
         mode: 'onChange',
         defaultValues: {
             phoneNumber: "",
@@ -34,27 +34,26 @@ const LoginPage = () => {
 
     const [phoneNumber, password] = watch(["phoneNumber", "password"])
 
-    const onSubmit = handleSubmit(async (data: TLoginFormData) => {
+    const onSubmit = async (data: TLoginFormData) => {
         // Authenticate the user
         console.log("Login Data", data);
 
         try {
-            const result = await login({
-                phoneNumber: data.phoneNumber,
-                password: data.password
-            }).unwrap()
+            await login(data)
             reset()
+            navigate("/")
 
-            if(result.data.token) {
-                storageService.save("token", result.data.token)
-                navigate("/home")
-            }
         } catch (error) {
             console.log(error);
             
         }
 
-    });
+    };
+
+    const handleFormSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        handleSubmit(onSubmit)(e)
+    }
     
 
     return (
@@ -76,7 +75,7 @@ const LoginPage = () => {
                         <div className="subtitle">Please login to continue to your account</div>
                     </div>
                     
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleFormSubmit}>
 
                         <div className={`field phone ${phoneNumber ? "filled" : ""}`}>
                             <input 
@@ -127,7 +126,9 @@ const LoginPage = () => {
                             <a href='#'>Forgot Password?</a>
                         </div>
 
-                        <input disabled={!isValid} className="btn--submit" type="submit" value={isLoading ? "Loading..." : "Log in"} />
+                        <input 
+                        disabled={!isValid} 
+                        className="btn--submit" type="submit" value={loginLoading ? "Loading..." : "Log in"} />
                     </form>
                 </div>
             </div>

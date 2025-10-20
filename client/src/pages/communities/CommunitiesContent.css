@@ -1,0 +1,38 @@
+.communities .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.communities .head {
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.communities .head #page {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.communities .head  .btn__container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.communities .btn__container .btn {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    transition: background-color ease 0.3s;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.communities .btn__container .btn:hover {
+    background-color: #dadfe7;
+}

@@ -1,0 +1,118 @@
+.profileModal {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: #00000090;
+}
+
+.profileModal .modal {
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    padding: 20px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    z-index: 110;
+    background-color: var(--primary-color);
+    width: 600px;
+    height: 350px;
+}
+
+.profileModal .head {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
+.profileModal .head .process {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profileModal .head .process .welcome {
+    font-weight: 600;
+    color: var(--dark-blue);
+}
+
+.profileModal .head .message {
+    font-size: 14px;
+}
+
+.profileModal .head .process .user {
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.profileModal .body {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileModal .body form  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+}
+
+.profileModal form .field,
+.profileModal .btn {
+    width: 484px;
+    height: 48px;
+}
+
+.profileModal form .field {
+    position: relative;
+    padding: 0 16px;
+    border: 1px solid var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profileModal input {
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #616161;
+}
+
+.profileModal .field label {
+    font-size: 12.8px;
+    color: #616161;
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profileModal form .field:focus-within label,
+.profileModal form .field.filled label {
+    top: -8px;
+    background-color: white;
+    padding: 0 4px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: var(--dark-blue);
+    font-weight: 500;
+}
+
+.profileModal form .btn {
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--dark-blue);
+    color: var(--primary-color);
+    border: none;
+    transition: all ease 0.3s;
+}
+
+.profileModal form .btn:hover {
+    background-color: var(--dark-blue-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
